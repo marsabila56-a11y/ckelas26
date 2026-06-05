@@ -228,6 +228,10 @@
                         <td class="visible-with-data" id="building">' + (feature.properties['building'] !== null ? autolinker.link(String(feature.properties['building']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
+                        <th scope="row">name</th>\
+                        <td class="visible-with-data" id="name">' + (feature.properties['name'] !== null ? autolinker.link(String(feature.properties['name']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
                         <th scope="row">capacity:persons</th>\
                         <td class="visible-with-data" id="capacity:persons">' + (feature.properties['capacity:persons'] !== null ? autolinker.link(String(feature.properties['capacity:persons']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
