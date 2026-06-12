@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Peta Sebaran Healthcare Surabaya</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:        #C8102E;
+      --red-dark:   #9B0B22;
+      --orange:     #FF6B35;
+      --orange-lt:  #FFA07A;
+      --white:      #FFFFFF;
+      --off-white:  #F8F9FA;
+      --ice:        #EFF6F8;
+      --navy:       #1A1A2E;
+      --gray:       #6C757D;
+      --card-bg:    #FFFFFF;
+      --border:     #E8ECF0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--off-white);
+      color: var(--navy);
+      line-height: 1.6;
+    }
+
+    /* ── NAVBAR ─────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid var(--red);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      height: 64px;
+      box-shadow: 0 2px 20px rgba(200,16,46,0.12);
+    }
+
+    .nav-brand {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700; font-size: 1rem;
+      color: var(--red);
+      text-decoration: none;
+    }
+
+    .nav-brand .pulse-dot {
+      width: 10px; height: 10px;
+      background: var(--red);
+      border-radius: 50%;
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(200,16,46,0.6); }
+      70%  { box-shadow: 0 0 0 10px rgba(200,16,46,0); }
+      100% { box-shadow: 0 0 0 0 rgba(200,16,46,0); }
+    }
+
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      font-family: 'Inter', sans-serif; font-size: 0.875rem; font-weight: 500;
+      color: var(--navy); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--red); }
+
+    /* ── HERO ────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--red-dark) 0%, var(--red) 45%, var(--orange) 100%);
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 100px 5% 60px;
+      position: relative; overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(circle at 20% 80%, rgba(255,255,255,0.06) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.06) 0%, transparent 50%);
+    }
+
+    /* heartbeat SVG line behind hero text */
+    .hero-ecg {
+      position: absolute; bottom: 40px; left: 0; right: 0;
+      opacity: 0.15; pointer-events: none;
+    }
+
+    .hero-inner { position: relative; z-index: 1; max-width: 760px; }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.35);
+      color: #fff; border-radius: 50px;
+      padding: 6px 18px; font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .hero-icon {
+      font-size: 3.5rem; color: rgba(255,255,255,0.9);
+      margin-bottom: 20px;
+      display: block;
+      animation: floatIcon 3s ease-in-out infinite;
+    }
+
+    @keyframes floatIcon {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-10px); }
+    }
+
+    #hero h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 800; color: #fff;
+      line-height: 1.15; margin-bottom: 20px;
+    }
+
+    #hero h1 span { color: #FFD6A5; }
+
+    #hero p {
+      font-size: 1.05rem; color: rgba(255,255,255,0.88);
+      max-width: 580px; margin: 0 auto 36px;
+      font-weight: 300; line-height: 1.75;
+    }
+
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #fff; color: var(--red);
+      border-radius: 50px; padding: 14px 32px;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.95rem;
+      text-decoration: none;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .hero-cta:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(0,0,0,0.28); }
+
+    /* ── SHARED SECTION LABELS ────────────────────────────── */
+    .section-label {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--red), var(--orange));
+      color: #fff; border-radius: 4px;
+      padding: 4px 14px; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2.1rem);
+      font-weight: 700; color: var(--navy);
+      margin-bottom: 16px;
+    }
+
+    .section-desc {
+      font-size: 0.97rem; color: var(--gray);
+      max-width: 620px; line-height: 1.8;
+    }
+
+    /* ── TEAM ─────────────────────────────────────────────── */
+    #team {
+      background: var(--ice);
+      padding: 90px 5%;
+    }
+
+    .team-header { text-align: center; margin-bottom: 52px; }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px; max-width: 1100px; margin: 0 auto;
+    }
+
+    .team-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 32px 24px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      border-top: 4px solid transparent;
+      background-clip: padding-box;
+      position: relative; overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .team-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--red), var(--orange));
+    }
+
+    .team-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(200,16,46,0.12); }
+
+    .team-avatar {
+      width: 72px; height: 72px;
+      background: linear-gradient(135deg, var(--red), var(--orange));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 18px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.6rem; font-weight: 700; color: #fff;
+    }
+
+    .team-card h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.975rem; font-weight: 600;
+      color: var(--navy); margin-bottom: 6px;
+      line-height: 1.35;
+    }
+
+    .team-card .nim {
+      font-size: 0.78rem; color: var(--gray);
+      letter-spacing: 0.04em;
+      background: var(--ice);
+      border-radius: 20px; padding: 3px 12px;
+      display: inline-block; margin-bottom: 12px;
+    }
+
+    .team-card .role-badge {
+      font-size: 0.72rem; font-weight: 600;
+      color: var(--red); background: rgba(200,16,46,0.08);
+      border-radius: 20px; padding: 3px 10px;
+      display: inline-block;
+    }
+
+    /* ── MAP ──────────────────────────────────────────────── */
+    #map-section {
+      background: var(--white);
+      padding: 90px 5%;
+    }
+
+    .map-intro { max-width: 700px; margin-bottom: 40px; }
+
+    .map-meta {
+      display: flex; flex-wrap: wrap; gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .map-tag {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--ice); border-radius: 8px;
+      padding: 7px 16px; font-size: 0.82rem; font-weight: 500;
+      color: var(--navy); border: 1px solid var(--border);
+    }
+    .map-tag i { color: var(--red); }
+
+    .map-wrapper {
+      border-radius: 20px; overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+      border: 2px solid var(--border);
+      position: relative;
+    }
+
+    .map-wrapper iframe {
+      width: 100%; height: 620px;
+      border: none; display: block;
+    }
+
+    .map-caption {
+      margin-top: 16px;
+      font-size: 0.8rem; color: var(--gray);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .map-caption i { color: var(--orange); }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.75);
+      padding: 48px 5%;
+      text-align: center;
+    }
+
+    footer .footer-brand {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.1rem; font-weight: 700;
+      color: #fff; margin-bottom: 10px;
+    }
+
+    footer .footer-brand span { color: var(--orange); }
+
+    footer p { font-size: 0.83rem; line-height: 1.7; }
+
+    footer .footer-divider {
+      width: 60px; height: 3px;
+      background: linear-gradient(90deg, var(--red), var(--orange));
+      border-radius: 2px; margin: 18px auto;
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .map-wrapper iframe { height: 420px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="#hero" class="nav-brand">
+      <div class="pulse-dot"></div>
+      <span>Healthcare Surabaya</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#team">Tim</a></li>
+      <li><a href="#map-section">Peta</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <i class="fa-solid fa-location-dot"></i>
+        WebGIS · Kota Surabaya
+      </div>
+      <i class="fa-solid fa-heart-pulse hero-icon"></i>
+      <h1>Peta Sebaran <span>Healthcare</span><br/>Kota Surabaya</h1>
+      <p>
+        Platform peta interaktif berbasis WebGIS yang menyajikan sebaran fasilitas
+        kesehatan di Kota Surabaya — lengkap dengan rute, kategori, dan informasi
+        detail tiap lokasi.
+      </p>
+      <a href="#map-section" class="hero-cta">
+        <i class="fa-solid fa-map-location-dot"></i>
+        Lihat Peta Interaktif
+      </a>
+    </div>
+
+    <!-- ECG line decorative -->
+    <svg class="hero-ecg" viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polyline points="0,30 200,30 240,5 260,55 280,5 300,55 320,30 500,30 540,30 580,10 600,50 620,10 640,50 660,30 900,30 940,15 960,45 980,15 1000,45 1020,30 1440,30"
+        stroke="white" stroke-width="2" fill="none"/>
+    </svg>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team">
+    <div class="team-header">
+      <div class="section-label">Tim Penyusun</div>
+      <h2 class="section-title">Kelompok Kami</h2>
+    </div>
+
+    <div class="team-grid">
+
+      <div class="team-card">
+        <div class="team-avatar">AA</div>
+        <h3>Aura Aulia</h3>
+        <div class="nim">21040125140210</div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar">CN</div>
+        <h3>Carin Novic Tambunan</h3>
+        <div class="nim">21040125120043</div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar">CZ</div>
+        <h3>Chintia Zalikha Megumi</h3>
+        <div class="nim">21040125140180</div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar">GP</div>
+        <h3>Glenn Pardess</h3>
+        <div class="nim">21040125130071</div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar">SR</div>
+        <h3>Salsabila Rahma Ira Marsa</h3>
+        <div class="nim">21040125120049</div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar">SI</div>
+        <h3>Samuel Ivan Pradipta Darus Ingku</h3>
+        <div class="nim">21040125130126</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MAP -->
+  <section id="map-section">
+    <div class="map-intro">
+      <div class="section-label">Peta Interaktif</div>
+      <h2 class="section-title">Sebaran Fasilitas Kesehatan</h2>
+      <p class="section-desc">
+        Klik marker pada peta untuk melihat detail fasilitas kesehatan — nama, kategori, alamat,
+        dan review singkat. Gunakan kontrol zoom untuk menjelajahi wilayah Kota Surabaya.
+      </p>
+    </div>
+
+    <div class="map-meta">
+      <div class="map-tag"><i class="fa-solid fa-hospital"></i> Rumah Sakit</div>
+      <div class="map-tag"><i class="fa-solid fa-clinic-medical"></i> Klinik</div>
+      <div class="map-tag"><i class="fa-solid fa-house-medical"></i> Puskesmas</div>
+      <div class="map-tag"><i class="fa-solid fa-road"></i> Rute Akses</div>
+    </div>
+
+    <div class="map-wrapper">
+      <!--
+        GANTI URL DI BAWAH INI dengan URL peta qgis2web kelompokmu yang sudah di-deploy ke Netlify.
+        Contoh: src="https://nama-project-kalian.netlify.app/"
+      -->
+      <iframe
+        src="https://project-iot-4c.netlify.app/"
+        title="Peta Sebaran Healthcare Kota Surabaya"
+        allowfullscreen
+        loading="lazy">
+      </iframe>
+    </div>
+
+    <p class="map-caption">
+      <i class="fa-solid fa-circle-info"></i>
+      Peta dibuat menggunakan QGIS + qgis2web, di-deploy via GitHub &amp; Netlify.
+      Klik marker untuk detail lokasi.
+    </p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">
+      Healthcare <span>Surabaya</span> WebGIS
+    </div>
+    <div class="footer-divider"></div>
+    <p>
+      Tugas Pemetaan Spasial · Peta Sebaran Fasilitas Kesehatan Kota Surabaya<br/>
+      Dibuat oleh Kelompok 4C &mdash; Teknik Perencanaan Wilayah dan Kota
+    </p>
+  </footer>
+
+</body>
+</html>
